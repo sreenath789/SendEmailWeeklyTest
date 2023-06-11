@@ -4,6 +4,7 @@ import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
+import java.util.Scanner;
 
 public class MailHandler {
 
@@ -28,8 +29,10 @@ public class MailHandler {
             mimeMessage.setFrom(MailMetaData.senderMail);
             mimeMessage.setSubject("Mail sending by using java");
             mimeMessage.setText("This is a weekly test by Geekster");
-
-            Address address = new InternetAddress(MailMetaData.receiverMail);
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Enter receiver Email address");
+            String receiver = scanner.nextLine();
+            Address address = new InternetAddress(receiver);
             mimeMessage.setRecipients(Message.RecipientType.TO,String.valueOf(address));
 
             Transport.send(mimeMessage);
